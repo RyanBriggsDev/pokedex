@@ -19,5 +19,3 @@ fetch('https://pokeapi.co/api/v2/pokemon/1')
   .catch(function(err) {
     // alert(`we're having technical difficulty, fuck off and come back later`);
   })
-
-  console.log('eggs');
