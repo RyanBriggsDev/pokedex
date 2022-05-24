@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/src/style.scss">
     <title>Pokèdex - Home</title>
 </head>
-<body>
+<body class="body">
     <!-- nav -->
     <include src="./src/components/nav.html"></include>
     <!-- page content -->
@@ -17,13 +17,13 @@
             <h1 class="display-2">Pokèdex</h1>
             <p class="label">built with vanilla javascript, bootstrap 5 and the pokèdex API.</p>
             <p class="label">by ryanmatthew248</p>
-            <div class="cardsGrid">
+            <div id="pokeContainer" class="poke-container">
+                    <!-- cards -->
             </div>
         </div>
     </main>
     <!-- footer -->
     <include src="./src/components/footer.html"></include>
-
     <!-- scripts -->
     <include src="./src/components/scriptRefs.html"></include>
 </body>
