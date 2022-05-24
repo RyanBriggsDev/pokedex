@@ -23,4 +23,5 @@
     "posthtml-doctype": "^1.1.1",
     "posthtml-include": "^1.7.4"
   },
+  "main": "index.js"
 }

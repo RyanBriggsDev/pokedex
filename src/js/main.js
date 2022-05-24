@@ -22,6 +22,7 @@ const numberOfPoke = 151;
       const data = await fetch(url);
       const pokemon = await data.json();
       createPokemonCard(pokemon)
+      console.log(pokemon);
     }
 
     // func to create each card on index page
@@ -39,6 +40,18 @@ const numberOfPoke = 151;
             </div>
           </div>
           <div class="pokeCardBack">
+            <div class="hp">HP: <span class="pokeHP">${pokemon.stats[0].base_stat}</div>
+            <div class="pokeName"><span class="pokeName">${capitalise(pokemon.name)}</div>
+            <div class="basicPokemon">Basic Pokemon</div>
+            <div class="pokeImage"><img src="${pokemon.sprites.back_default}" class="poke-image-back" /></div>
+            <div class="pokeHeight">Height: ${pokemon.height} </div>
+            <div class="pokeType1">Type: ${capitalise(pokemon.types[0].type.name)}</div>
+            <div class="pokeWeight">Weight: ${pokemon.weight}</div>
+            <div class="pokeMove1">Move: ${capitalise(pokemon.moves[0].move.name)}</div>
+            <div class="originalPokemon">
+              <div class="originalPokeText">Original Pokemon</div>
+              <div class="pokeID">ID: </div>
+          </div>
           </div>
         </div>  
       `;
@@ -49,7 +62,6 @@ const numberOfPoke = 151;
 
 // call function
 loopPokemon();
-
 
 // // test
 // let body = document.querySelector('.body');
