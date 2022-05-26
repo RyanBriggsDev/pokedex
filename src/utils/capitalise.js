@@ -9,5 +9,5 @@ export default function capitalise(input) {
     let remainer = lower.slice(1, );
     // add pieces together
     let capResult = upper + remainer;
-    return capResult
+    return capResult;
 }

@@ -1,11 +1,26 @@
 // selectors 
 const pokeContainer = document.getElementById('pokeContainer');
+const searchBox = document.getElementById('searchBox');
 
 // imports
   import capitalise from '../utils/capitalise.js'
+  import capitaliseEachWord from '../utils/capataliseEachWord.js';
 
-// declarations
+  // declarations
 const numberOfPoke = 151;
+let searchArray = [];
+
+// search box
+searchBox.addEventListener('keyup', (e) => {
+  const searchInput = e.target.value;
+  const filteredPokemon = searchArray.filter((pokemon) => {
+    return (
+      pokemon.name.includes(searchInput) || 
+      pokemon.id.includes(searchInput)
+      );
+  });
+  console.log(filteredPokemon);
+});
 
 // functions
 
@@ -13,45 +28,60 @@ const numberOfPoke = 151;
     const loopPokemon = async () => {
       for (let i = 1; i <= numberOfPoke; i++) {
         await getPokemon(i);
-      }    
-
+      }
     }
+
     // func to fetch data from api
     const getPokemon = async id => {
-      const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-      const data = await fetch(url);
-      const pokemon = await data.json();
-      createPokemonCard(pokemon)
-      console.log(pokemon);
+      try {
+          const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+          const data = await fetch(url);
+          const pokemon = await data.json();
+          searchArray = pokemon;
+          createPokemonCard(pokemon);
+      } catch (error) {
+          console.log(error);
+      }
     }
 
     // func to create each card on index page
     function createPokemonCard(pokemon) {
       const pokemonEl = document.createElement('div');
       pokemonEl.classList.add('pokemon-cards');
-      // inject pokemon data into cards
+
+      // pokemon declarations
+      let pokeType = capitalise(pokemon.types[0].type.name);
+      let pokeHp = pokemon.stats[0].base_stat;
+      let pokeName = pokemon.name;
+      let pokeMainImgFront = pokemon.sprites.front_default;
+      let pokeMainImgBack = pokemon.sprites.back_default;
+      let pokeHeight = pokemon.height;
+      let pokeWeight = pokemon.weight;
+      let pokeID = pokemon.id;
+      let pokeMove1 = pokemon.moves[0].move.name.replace("-", " ");
+
+      // inject pokemon data into card
       const pokeInnerHTML = `
         <div class="theCard"> 
           <div class="pokeCardFront">
             <div class="pokeCardFront-Content">
-              <img src="${pokemon.sprites.front_default}" class="poke-image" />
-              <p class="id">#${pokemon.id.toString().padStart(3, "0")}</p>
+              <img src="${pokeMainImgFront}" class="poke-image" />
+              <p class="id">#${pokeID.toString().padStart(3, "0")}</p>
               <h3 class="pokeName"> ${capitalise(pokemon.name)}</h3>  
             </div>
           </div>
           <div class="pokeCardBack">
-            <div class="hp">HP: <span class="pokeHP">${pokemon.stats[0].base_stat}</div>
-            <div class="pokeName"><span class="pokeName">${capitalise(pokemon.name)}</div>
-            <div class="basicPokemon">Basic Pokemon</div>
-            <div class="pokeImage"><img src="${pokemon.sprites.back_default}" class="poke-image-back" /></div>
-            <div class="pokeHeight">Height: ${pokemon.height} </div>
-            <div class="pokeType1">Type: ${capitalise(pokemon.types[0].type.name)}</div>
-            <div class="pokeWeight">Weight: ${pokemon.weight}</div>
-            <div class="pokeMove1">Move: ${capitalise(pokemon.moves[0].move.name)}</div>
-            <div class="originalPokemon">
-              <div class="originalPokeText">Original Pokemon</div>
-              <div class="pokeID">ID: </div>
-          </div>
+            <div class="hp">HP: <span class="pokeHP">${pokeHp}</div>
+            <div class="pokeName"><span class="pokeName">${capitalise(pokeName)}</div>
+            <div class="basicPokemon">Basic Pokèmon</div>
+            <div class="pokeImage"><img src="${pokeMainImgFront}" class="poke-image-back" /></div>
+            <div class="underImgContainer">
+              <div class="pokeHeight">Height<br> ${pokeHeight} </div>
+              <div class="pokeWeight">Weight<br> ${pokeWeight}</div>
+            </div>
+            <div class="pokeType1">Type: ${capitalise(pokeType)}</div>
+            <div class="pokeMove1">Move: ${capitaliseEachWord(pokeMove1)}</div>
+            <div class="pokeID">#${pokeID.toString().padStart(3, "0")}</div>
           </div>
         </div>  
       `;
@@ -62,17 +92,3 @@ const numberOfPoke = 151;
 
 // call function
 loopPokemon();
-
-// // test
-// let body = document.querySelector('.body');
-// body.style.background = 'red';
-
-// save for later
-    // <div class="weight">Weight: <span class="pokeWeight">${pokemon.weight}</div>
-    // <div class="height">Height: <span class="pokeHeight">${pokemon.height}</div>
-    // <div class="hp">HP: <span class="pokeHp">${pokemon.stats[0].base_stat}</div>
-    // <div class="attack">Attack: <span class="pokeAttack">${pokemon.stats[1].base_stat}</div>
-    // <div class="defence">Defence: <span class="pokeDefence">${pokemon.stats[2].base_stat}</div>
-    // <div class="specialAttack">Special Attack: <span class="pokeSpecialAttack">${pokemon.stats[3].base_stat}</div>
-    // <div class="specialDefence">Special Defence: <span class="pokeSpecialDefence">${pokemon.stats[4].base_stat}</div>
-    // <div class="speed">Speed: <span class="pokeSpeed">${pokemon.stats[5].base_stat}</div>
