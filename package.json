@@ -1,0 +1,27 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "small project working with the Pokèdex API",
+  "scripts": {
+    "start": "parcel ./src/pages/*.html",
+    "build": "parcel build ./src/pages/*.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanmatthew248/pokedex.git"
+  },
+  "author": "ryanmatthew248",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryanmatthew248/pokedex/issues"
+  },
+  "homepage": "https://github.com/ryanmatthew248/pokedex#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.5.0",
+    "parcel": "^2.5.0",
+    "postcss": "^8.4.14",
+    "posthtml-doctype": "^1.1.1",
+    "posthtml-include": "^1.7.4"
+  },
+  "main": "index.js"
+}

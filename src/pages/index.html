@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/src/style.scss">
+    <title>Pokèdex - Home</title>
+</head>
+<body class="body">
+    <!-- nav -->
+    <include src="./src/components/nav.html"></include>
+    <!-- page content -->
+    <main>
+        <div class="container text-center py-5">
+            <h1 class="display-2">Pokèdex</h1>
+            <p class="label">built with vanilla javascript, bootstrap 5 and the pokèdex API.</p>
+            <p class="label margin60">by ryanmatthew248</p>
+            <input type="search" id="searchBox" placeholder="Search">
+            <div id="pokeContainer" class="poke-container">
+                    <!-- cards -->
+            </div>
+        </div>
+    </main>
+    <!-- footer -->
+    <include src="./src/components/footer.html"></include>
+    <!-- scripts -->
+    <include src="./src/components/scriptRefs.html"></include>
+</body>
+</html>

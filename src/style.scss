@@ -1,0 +1,229 @@
+// MIXINS
+
+@mixin centerGrid {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+body {
+    background: rgb(255,254,202);
+    background: linear-gradient(180deg, rgba(255,254,202,0.6) 0%, rgba(255,190,190,0.6) 25%, rgba(165,226,255,0.6) 50%, rgba(255,254,202,0.6) 75%, rgba(255,190,190,0.6) 100%);
+}
+    
+li, a {
+    text-decoration: none;
+    color: black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 0; margin: 0;
+}
+
+.margin60 {
+    margin-bottom: 60px;
+}
+
+.poke-container {
+    margin: 60px 0;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+}
+
+.pokemon-cards {
+    perspective: 1000px;
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+    margin: 0 auto;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.theCard {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+    background: none;
+    color: black;
+    border-radius: 5px;
+    color: white;
+    width: 280px;
+}
+
+.theCard:hover {
+    transform: rotateY(180deg);
+}
+
+// front of card
+.pokeCardFront {
+    background-image: url("/src/img/pokemon\ card\ background.png");
+    background-size: contain;
+    background-position: center;
+    border-radius: 10px;
+    position: absolute;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+    .pokeCardFront-Content {
+        background: rgba(0, 0, 0, 0.4);
+        padding: 30px;
+    }
+
+    .poke-image {
+        width: 200px; height: 200px;
+    }
+
+    .id {
+        margin-top: 15px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+// back of card
+.pokeCardBack {
+    background: rgb(255,254,202);
+    background: linear-gradient(32deg, rgba(255,254,202,0.3) 0%, rgba(165,226,255,0.3) 50%, rgba(255,190,190,0.3) 100%);
+    color: black;
+    font-weight: 500;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    border-radius: 10px;
+    border: 15px solid #ffcc00;
+    backface-visibility: hidden;
+    overflow: hidden;
+    text-align: center;
+    transform: rotateY(180deg);
+    padding: 7px;
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "basicPokemon basicPokemon basicPokemon basicPokemon basicPokemon . . . hp hp hp hp hp"
+      "pokeName pokeName pokeName pokeName pokeName pokeName . . hp hp hp hp hp"
+      ". . pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage . ."
+      ". . pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage . ."
+      ". . pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage . ."
+      ". . pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage . ."
+      ". . pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage . ."
+      ". . pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage pokeImage . ."
+      ". . . underImgContainer underImgContainer underImgContainer underImgContainer underImgContainer underImgContainer underImgContainer . . ."
+      ". . . . . . . . . . . . ."
+      ". . pokeMove1 pokeMove1 pokeMove1 pokeMove1 pokeMove1 pokeMove1 pokeMove1 pokeMove1 pokeMove1 . ."
+      ". . pokeType1 pokeType1 pokeType1 pokeType1 pokeType1 pokeType1 pokeType1 pokeType1 pokeType1 . ."
+      ". . . . . . . . . . . . ."
+      "pokeID pokeID pokeID pokeID pokeID pokeID pokeID pokeID pokeID pokeID pokeID pokeID pokeID"; 
+      }
+
+      .hp { 
+          grid-area: hp; 
+          margin-left: auto;
+          font-size: 16px;
+        }
+      .pokeName { 
+          grid-area: pokeName;
+          margin-right: auto; 
+        }
+      .basicPokemon { 
+          grid-area: basicPokemon;
+          margin-right: auto;  
+        }
+
+      .pokeImage { 
+          grid-area: pokeImage; 
+          background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+          radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);      
+          height: 100%; width: 100%;
+          border: 5px solid #ffcc00;
+          border-radius: 10px;
+          margin: 3px; 
+        }
+        
+        .poke-image-back {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+      .pokeID { 
+          grid-area: pokeID; 
+          font-size: 16px;
+        }
+
+      .underImgContainer {
+        background: goldenrod;
+        border-radius: 0 0 10px 10px;
+        padding: 3px 5px;
+        margin: 0;
+        margin-top: 2.5px;
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+          "pokeWeight pokeHeight"; 
+        grid-area: underImgContainer; 
+      }
+      .pokeWeight { grid-area: pokeWeight; }
+      .pokeType1 { grid-area: pokeType1; }
+      .pokeHeight { grid-area: pokeHeight; }
+      .originalPokemonText { grid-area: originalPokemonText; }
+      .pokeMove1 { grid-area: pokeMove1; }
+
+      // footer 
+
+    footer {
+        background: black;
+        color: white;
+        width: 100%;
+        @include centerGrid;
+        grid-auto-flow: column;
+        padding: 30px;
+    }
+
+    #footerContainer {
+        @include centerGrid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-gap: 0;
+        grid-template-areas:
+        "copyright footerContact";
+    }
+
+    .footerContect { grid-area: footerContact; }
+    .copyright { grid-area: copyright; }
+
+    footer img {
+        width: 32px; height: 32px;
+        transition: 300ms;
+    }
+
+    footer img:hover {
+        width: 44px; height: 44px;
+    }
+
+// save for later
+    // background: rgb(255,254,202);
+    // background: linear-gradient(14deg, rgba(255,254,202,0.3) 0%, rgba(165,226,255,0.3) 50%, rgba(255,190,190,0.3) 100%);    
+    // box-shadow: 1px 1px 1px rgba(204, 204, 204, 0.804);
+    // border-radius: 20px;
+    // border: rgb(209, 209, 209) 1px solid;}
+
+    .hide {
+        display: none;
+    }
