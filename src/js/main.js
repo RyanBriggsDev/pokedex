@@ -1,6 +1,5 @@
 // selectors 
 const pokeContainer = document.getElementById('pokeContainer');
-const searchBox = document.getElementById('searchBox');
 
 // imports
   import capitalise from '../utils/capitalise.js'
@@ -8,19 +7,6 @@ const searchBox = document.getElementById('searchBox');
 
   // declarations
 const numberOfPoke = 151;
-let searchArray = [];
-
-// search box
-searchBox.addEventListener('keyup', (e) => {
-  const searchInput = e.target.value;
-  const filteredPokemon = searchArray.filter((pokemon) => {
-    return (
-      pokemon.name.includes(searchInput) || 
-      pokemon.id.includes(searchInput)
-      );
-  });
-  console.log(filteredPokemon);
-});
 
 // functions
 
@@ -37,7 +23,6 @@ searchBox.addEventListener('keyup', (e) => {
           const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
           const data = await fetch(url);
           const pokemon = await data.json();
-          searchArray = pokemon;
           createPokemonCard(pokemon);
       } catch (error) {
           console.log(error);
